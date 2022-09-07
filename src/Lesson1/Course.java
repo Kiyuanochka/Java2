@@ -1,28 +1,53 @@
 package Lesson1;
 
 public class Course {
-    public static void main(String[] args) {
-        String[] Courses = new String[4];
-        Courses[0] = "Jump";
-        Courses[1] = "Run";
-        Courses[2] = "Swim";
-        Courses[3] = "Crawl";
+    String result;
+    private int Run;
+    private int HittingTheTarget;
+    private int DeathStreak;
+    private int Compass;
 
+    public Course(int run, int hittingTheTarget, int deathStreak, int compass) {
+        this.Run = run;
+        this.HittingTheTarget = hittingTheTarget;
+        this.DeathStreak = deathStreak;
+        this.Compass = compass;
     }
-        public void doIt(String[] arr) {
-            String[] Courses = new String[4];
-            Courses[0] = "Jump";
-            Courses[1] = "Run";
-            Courses[2] = "Swim";
-            Courses[3] = "Crawl";
 
-
-        for ( int i = 0; i < arr.length; i++) {
-            for ( int j = 0; j < Courses.length; j++) {
-            System.out.print(arr[i] + " " + Courses[j] + " ");
-         }
-            System.out.println();
+    public String doIt(Team team) {
+        result = "Team " + team.getName() + " " + '\n';
+        for (Members Members: team.getPeoples()) {
+        result += "Name of member " + Members.getName() + " " + '\n';
+        int valueRun = Members.getMobility();
+        int valueHit = Members.getDexterity();
+        int valueStreak = Members.getHealth();
+        int valueCompass = Members.getIntelligence();
+        testRun(valueRun);
+        testHittingTheTarget(valueHit);
+        testDeathStreak(valueStreak);
+        testCompass(valueCompass);
         }
+        return result;
+    }
 
-    }}
+
+    private void testRun(int valueRun){
+    if (valueRun<Run) result = result + " Run. Obstacle not passed" + '\n';
+    else result += "Run. Obstacle passed!!!" + '\n';
+    }
+    private void testHittingTheTarget(int valueHit){
+        if (valueHit<HittingTheTarget) result = result + "Hitting The Target. Obstacle not passed" + '\n';
+        else result += "Hitting The Target. Obstacle passed!!!" + '\n';
+    }
+    private void testDeathStreak(int valueStreak){
+        if (valueStreak<DeathStreak) result = result + "DeathStreak. Obstacle not passed" + '\n';
+        else result += "DeathStreak. Obstacle passed!!!" + '\n';
+    }
+    private void testCompass(int valueCompass){
+        if (valueCompass<Compass) result = result + "Compass. Obstacle not passed" + '\n';
+        else result += "Compass. Obstacle passed!!!" + '\n';
+    }
+
+
+}
 

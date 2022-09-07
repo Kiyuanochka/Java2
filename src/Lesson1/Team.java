@@ -4,27 +4,19 @@ import java.util.Arrays;
 
 public class Team {
 
-    public static void main(String[] args) {
+    private String name;
+    private Members[] peoples;
 
-        Course c = new Course();
-        Team team = new Team();
-        String[] Members = new String[4];
+    public Team(String name, Members[] peoples) {
+        this.name = name;
+        this.peoples = peoples;
+    }
+    public String getName() {
+        return name;
+    }
 
-       Members[0] = "QQQ";
-       Members[1] = "AAA";
-       Members[2] = "ZZZ";
-       Members[3] = "XXX";
-
-        System.out.println(" Members of the Team: " + Arrays.toString(Members));
-
-
-        c.doIt(Members);
-
-
-
-        //team.showResults(); // Показываем результаты
-    }}
-
-
-
+    public Members[] getPeoples() {
+        return peoples;
+    }
+}
 
