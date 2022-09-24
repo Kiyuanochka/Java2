@@ -31,9 +31,9 @@ public class Box <T extends Fruit> {
         System.out.println("In the this box " + this.getWeightArray());
         System.out.println("In the next box " + box.getWeightArray());
         for (int i=0; i<box.getFruitArray().length; i++){
-        if(box.getFruitArray()[i]!=null)
+        if(box.getFruitArray()[i]!=null){
             this.getFruitArray()[getSize()] = box.getFruitArray()[i];
-            box.getFruitArray()[i]=null;
+            box.getFruitArray()[i]=null;}
     }
 
 

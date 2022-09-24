@@ -42,15 +42,16 @@ public class RunClass {
         Box<Orange> box3 = new Box<>(oranges2);
 
         System.out.println("Weight the first box " + box1.getWeightArray());
-        System.out.println("Weight the first box " + box2.getWeightArray());
+        System.out.println("Weight the next box " + box2.getWeightArray());
 
 
         System.out.println(box1.compare(box3));
 
 
         box1.toEmptyArray(box3);
-
+        System.out.println("Weight the first box " + box1.getWeightArray());
         System.out.println("Weight the third box " + box3.getWeightArray());
+
 
     }
 
