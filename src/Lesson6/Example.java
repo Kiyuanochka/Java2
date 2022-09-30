@@ -18,7 +18,7 @@ public class Example {
         HttpUrl url = new HttpUrl.Builder()
                 .scheme("http")
                 .host("dataservice.accuweather.com")
-                .addPathSegment("forecast")
+                .addPathSegment("forecasts")
                 .addPathSegment("v1")
                 .addPathSegment("daily")
                 .addPathSegment("5day")
