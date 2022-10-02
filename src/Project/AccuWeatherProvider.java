@@ -27,7 +27,6 @@ public class AccuWeatherProvider implements WeatherProvider {
     @Override
     public void getWeather(Periods periods) throws IOException {
         String cityKey = detectCityKey();
-        String jsonResponse = null;
         if (periods.equals(Periods.NOW)) {
             HttpUrl url = new HttpUrl.Builder()
                     .scheme("http")
@@ -43,11 +42,8 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .url(url)
                     .build();
 
-            Response response = client.newCall(request).execute();
-            System.out.println(response.body().string());
-
-
-            jsonResponse = client.newCall(request).execute().body().string();
+            String jsonResponse = client.newCall(request).execute().body().string();
+            //System.out.println(jsonResponse.body().string());
 
             ObjectMapper mapper = new ObjectMapper();
             StringReader reader = new StringReader(jsonResponse);
@@ -83,7 +79,7 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .url(url)
                     .build();
 
-            jsonResponse = client.newCall(requestHttp).execute().body().string();
+            String jsonResponse = client.newCall(requestHttp).execute().body().string();
 
             System.out.println(jsonResponse);
         }

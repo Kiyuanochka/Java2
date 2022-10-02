@@ -50,7 +50,7 @@ public class AccuWeatherProvider implements WeatherProvider {
             Response response = client.newCall(request).execute();
             System.out.println(response.body().string());
 
-            public void WeatherResponse () throws  JsonProcessingException {
+            public void WeatherResponse () throws JsonProcessingException {
                 String jsonString = "{\"Metric\", \"WeatherText\"}";
                 ObjectMapper objectMapper = new ObjectMapper();
                 Weather weather = objectMapper.readValue(jsonString, Weather.class);
