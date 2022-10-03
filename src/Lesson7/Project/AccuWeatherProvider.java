@@ -2,6 +2,7 @@ package Lesson7.Project;
 
 import Lesson7.Project.ApplicationGlobalState;
 import Lesson7.Project.WeatherProvider;
+import Project.Example;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -47,15 +48,9 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .url(url)
                     .build();
 
-            Response response = client.newCall(request).execute();
+            Response response= client.newCall(request).execute();
             System.out.println(response.body().string());
 
-            public void WeatherResponse () throws JsonProcessingException {
-                String jsonString = "{\"Metric\", \"WeatherText\"}";
-                ObjectMapper objectMapper = new ObjectMapper();
-                Weather weather = objectMapper.readValue(jsonString, Weather.class);
-                System.out.println(weather);
-            }
 
         }
 
@@ -84,9 +79,23 @@ public class AccuWeatherProvider implements WeatherProvider {
 
             String jsonResponse = client.newCall(requestHttp).execute().body().string();
 
-            System.out.println(jsonResponse);
+            //System.out.println(jsonResponse);
+
+            ObjectMapper mapper = new ObjectMapper();
+            StringReader reader = new StringReader(jsonResponse);
+
+            Parameters parameters = objectMapper.readValue(reader, Parameters.class);
+
+            System.out.println("In the city " +  " on the data " + parameters.getLocalObservationDateTime() +
+            "expected" + parameters.getWeatherText() + ", Temperature" );
+
+            //+ parameters.getTemperature().getMetric().getValue()
+                  //  + parameters.getTemperature().getMetric().getUnit()
+
         }
+
     }
+
 
 
     public String detectCityKey() throws IOException {
