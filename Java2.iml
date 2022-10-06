@@ -28,5 +28,6 @@
     <orderEntry type="library" name="okhttp-4.8.1" level="project" />
     <orderEntry type="library" name="okhttp-urlconnection-4.8.1" level="project" />
     <orderEntry type="library" name="jackson-annotations-2.11.2" level="project" />
+    <orderEntry type="library" name="sqlite-jdbc-3.36.0.3" level="project" />
   </component>
 </module>

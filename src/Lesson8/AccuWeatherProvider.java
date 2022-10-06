@@ -1,9 +1,7 @@
-package Project;
+package Lesson8;
 
-import Project.enums.Periods;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import Lesson8.entity.WeatherData;
+import Lesson8.enums.Periods;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -41,20 +39,16 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .url(url)
                     .build();
 
-            String jsonResponse = client.newCall(request).execute().body().string();
-            //System.out.println(jsonResponse.body().string());
+            Response response= client.newCall(request).execute();
+            System.out.println(response.body().string());
 
-            ObjectMapper mapper = new ObjectMapper();
-            StringReader reader = new StringReader(jsonResponse);
+            createTableIfNotExists();
+            saveWeatherData();
 
-            Example example = mapper.readValue(reader, Example.class);
-            System.out.println();
+
+
         }
 
-
-        // TODO: Сделать в рамках д/з вывод более приятным для пользователя.
-        //  Создать класс WeatherResponse, десериализовать ответ сервера в экземпляр класса
-        //  Вывести пользователю только текущую температуру в C и сообщение (weather text)
         else if (periods.equals(Periods.FIVE_DAYS)) {
             OkHttpClient client = new OkHttpClient();
 
@@ -80,8 +74,27 @@ public class AccuWeatherProvider implements WeatherProvider {
 
             String jsonResponse = client.newCall(requestHttp).execute().body().string();
 
-            System.out.println(jsonResponse);
-        }
+            //System.out.println(jsonResponse);
+
+            ObjectMapper mapper = new ObjectMapper();
+            StringReader reader = new StringReader(jsonResponse);
+
+            //Parameters[] parameters = mapper.readValue(reader, Parameters[].class);
+            //int i = 0;
+            //for (i<parameters.length, i++){
+            //System.out.println("In the city " + " on the data " + parameters[i].getLocalObservationDateTime() +
+            //"expected" + parameters[i].getWeatherText() + ", Temperature" );}
+
+            //+ parameters.getTemperature().getMetric().getValue()
+                  //  + parameters.getTemperature().getMetric().getUnit()
+
+        }}
+
+
+
+    @Override
+    public WeatherData getAllFromDb() throws IOException {
+        return null;
     }
 
 
@@ -121,4 +134,5 @@ public class AccuWeatherProvider implements WeatherProvider {
 
         return objectMapper.readTree(jsonResponse).get(0).at("/Key").asText();
     }
+
 }

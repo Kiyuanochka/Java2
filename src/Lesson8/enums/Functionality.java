@@ -1,4 +1,4 @@
-package Project.enums;
+package Lesson8.enums;
 
 public enum Functionality {
     GET_CURRENT_WEATHER,

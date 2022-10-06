@@ -1,9 +1,9 @@
-package Project;
+package Lesson8;
 
 
 
-import Project.enums.Functionality;
-import Project.enums.Periods;
+import Lesson8.enums.Functionality;
+import Lesson8.enums.Periods;
 
 import java.io.IOException;
 import java.util.HashMap;

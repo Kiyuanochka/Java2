@@ -1,12 +1,6 @@
 package Lesson7.Project;
 
-import Lesson7.Project.ApplicationGlobalState;
-import Lesson7.Project.WeatherProvider;
-import Project.Example;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import Lesson7.Project.enums.Periods;
 import okhttp3.HttpUrl;
@@ -15,7 +9,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 
@@ -43,16 +36,21 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .addQueryParameter("apikey", API_KEY)
                     .build();
 
-            Request request = new Request.Builder()
+            Request requestHttp = new Request.Builder()
                     .addHeader("accept", "application/json")
                     .url(url)
                     .build();
 
-            Response response= client.newCall(request).execute();
-            System.out.println(response.body().string());
+            String jsonResponse = client.newCall(requestHttp).execute().body().string();
+            //System.out.println(response.body().string());
+            ObjectMapper mapper = new ObjectMapper();
+            StringReader reader = new StringReader(jsonResponse);
+
+            Parameters parameters = mapper.readValue(reader, Parameters.class);
+
+            System.out.println("In the city " + " on the data " + parameters.getLocalObservationDateTime() + "expected" + parameters.getWeatherText() + ", Temperature" );}
 
 
-        }
 
         else if (periods.equals(Periods.FIVE_DAYS)) {
             OkHttpClient client = new OkHttpClient();
@@ -83,18 +81,16 @@ public class AccuWeatherProvider implements WeatherProvider {
 
             ObjectMapper mapper = new ObjectMapper();
             StringReader reader = new StringReader(jsonResponse);
-
-            Parameters parameters = objectMapper.readValue(reader, Parameters.class);
-
-            System.out.println("In the city " +  " on the data " + parameters.getLocalObservationDateTime() +
-            "expected" + parameters.getWeatherText() + ", Temperature" );
+            //Parameters[] parameters = mapper.readValue(reader, Parameters[].class);
+            //int i = 0;
+            //for (i<parameters.length, i++){
+            //System.out.println("In the city " + " on the data " + parameters[i].getLocalObservationDateTime() +
+            //"expected" + parameters[i].getWeatherText() + ", Temperature" );}
 
             //+ parameters.getTemperature().getMetric().getValue()
                   //  + parameters.getTemperature().getMetric().getUnit()
 
-        }
-
-    }
+        }}
 
 
 
