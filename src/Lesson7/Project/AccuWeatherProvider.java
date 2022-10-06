@@ -81,11 +81,10 @@ public class AccuWeatherProvider implements WeatherProvider {
 
             ObjectMapper mapper = new ObjectMapper();
             StringReader reader = new StringReader(jsonResponse);
-            //Parameters[] parameters = mapper.readValue(reader, Parameters[].class);
-            //int i = 0;
-            //for (i<parameters.length, i++){
-            //System.out.println("In the city " + " on the data " + parameters[i].getLocalObservationDateTime() +
-            //"expected" + parameters[i].getWeatherText() + ", Temperature" );}
+            Parameters[] parameters = mapper.readValue(reader, Parameters[].class);
+
+            for (int i = 0, i<parameters.length, i++){
+            System.out.println("In the city " + " on the data " + parameters[i].getLocalObservationDateTime() + "expected" + parameters[i].getWeatherText() + ", Temperature" );}
 
             //+ parameters.getTemperature().getMetric().getValue()
                   //  + parameters.getTemperature().getMetric().getUnit()
