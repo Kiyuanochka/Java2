@@ -48,11 +48,8 @@ public class AccuWeatherProvider implements WeatherProvider {
 
             Parameters parameters = mapper.readValue(reader, Parameters.class);
 
-            System.out.println("In the city " + " on the data " + parameters.getLocalObservationDateTime() + "expected" + parameters.getWeatherText() + ", Temperature" );}
-
-
-
-        else if (periods.equals(Periods.FIVE_DAYS)) {
+            System.out.println("In the city " + " on the data " + parameters.getLocalObservationDateTime() + "expected" + parameters.getWeatherText() + ", Temperature");
+        } else if (periods.equals(Periods.FIVE_DAYS)) {
             OkHttpClient client = new OkHttpClient();
 
             HttpUrl url = new HttpUrl.Builder()
@@ -83,17 +80,20 @@ public class AccuWeatherProvider implements WeatherProvider {
             StringReader reader = new StringReader(jsonResponse);
             Parameters[] parameters = mapper.readValue(reader, Parameters[].class);
 
-            for (int i = 0, i<parameters.length, i++){
+           /* for (int i = 0, i<parameters.length, i++){
             System.out.println("In the city " + " on the data " + parameters[i].getLocalObservationDateTime() + "expected" + parameters[i].getWeatherText() + ", Temperature" );}
 
             //+ parameters.getTemperature().getMetric().getValue()
                   //  + parameters.getTemperature().getMetric().getUnit()
 
-        }}
+        }*/
+        }
+    }
 
 
 
-    public String detectCityKey() throws IOException {
+
+   public String detectCityKey() throws IOException {
         String selectedCity = ApplicationGlobalState.getInstance().getSelectedCity();
 
         HttpUrl detectLocationURL = new HttpUrl.Builder()

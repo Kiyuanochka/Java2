@@ -42,8 +42,8 @@ public class AccuWeatherProvider implements WeatherProvider {
             Response response= client.newCall(request).execute();
             System.out.println(response.body().string());
 
-            createTableIfNotExists();
-            saveWeatherData();
+            //createTableIfNotExists();
+           // saveWeatherData();
 
 
 
